@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+
+    <!--<link href="static/css/base/bootstrap.css" rel="stylesheet">-->
+    <!--<link rel="stylesheet" href="../../static/formValidation/css/default.css">-->
+    <link href="static/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/formValidation/dist/css/formValidation.css">
+
+    <!-- Theme styles START -->
+    <link href="static/assets/global/css/components.css" rel="stylesheet">
+    <link href="static/assets/frontend/layout/css/style.css" rel="stylesheet">
+    <link href="static/assets/frontend/pages/css/style-shop.css" rel="stylesheet" type="text/css">
+    <link href="static/assets/frontend/pages/css/style-layer-slider.css" rel="stylesheet">
+    <link href="static/assets/frontend/layout/css/style-responsive.css" rel="stylesheet">
+    <link href="static/assets/frontend/layout/css/themes/red.css" rel="stylesheet" id="style-color">
+    <link href="static/assets/frontend/layout/css/custom.css" rel="stylesheet">
+    <!-- Theme styles END -->
+
+    <style type="text/css">
+        body { padding-top: 70px; min-height: 410px ;}
+        .tab-content p { padding: 10px 0; }
+    </style>
+    <title></title>
+</head>
+
+<body class="ecommerce">
+<div class="pre-header">
+    <div class="container">
+        <div class="row">
+            <!-- BEGIN TOP BAR LEFT PART -->
+            <div class="col-md-6 col-sm-6 additional-shop-info">
+                <ul class="list-unstyled list-inline">
+                    <li><i class="fa fa-home"></i><a href="index.html">返回首页</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-sm-6 additional-nav">
+                <ul class="list-unstyled list-inline pull-right">
+                    <li><a href="login.html">请登录</a></li>
+                    <li><a href="register.html" style="color: #f30213">免费注册</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END TOP BAR -->
+<!--<header class="navbar navbar-fixed-top">
+    <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">返回首页</a>
+        <div class="navbar-collapse nav-collapse collapse navbar-header navbar-right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="login.html">请登录</a>
+                </li>
+                <li>
+                    <a href="register.html" style="color: #f30213">免费注册</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">购物车<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="#">My Account</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="#">Change Email</a></li>
+                        <li><a tabindex="-1" href="#">Change Password</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div> &lt;!&ndash; .nav-collapse &ndash;&gt;
+    </div> &lt;!&ndash; .container &ndash;&gt;
+</header> &lt;!&ndash; .navbar &ndash;&gt;-->
+
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="page-header">
+                    <h2>商品详情</h2>
+                </div>
+                <form class="form-horizontal" id="createCommForm" method="post">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">商品名</label>
+                        <div class="col-lg-5">
+                            <label class="control-label" name="commName" id="commName"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">商品价格</label>
+                        <div class="col-lg-5">
+                            <label class="control-label" name="commPrice" id="commPrice"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">商品库存</label>
+                        <div class="col-lg-5">
+                            <label class="control-label" name="commStock" id="commStock"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">商品销量</label>
+                        <div class="col-lg-5">
+                            <label class="control-label" name="commSales" id="commSales"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">商品图片</label>
+                        <div class="col-lg-5">
+                            <img style="width:200px;height:auto;" name="commImgUrl" id="commImgUrl"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">商品描述</label>
+                        <div class="col-lg-5">
+                            <label class="control-label" name="commDescription" id="commDescription"/>
+                        </div>
+                    </div>
+                    <div id="promoPriceContainer" class="form-group">
+                        <label style="color:red" class="col-lg-3 control-label">秒杀价格</label>
+                        <div class="col-lg-5">
+                            <label style="color:red" class="control-label" id="promoPrice" />
+                        </div>
+                    </div>
+                    <div id="promoStartDateContainer" class="form-group">
+                        <label style="color:blue" id="promoStatus" class="col-lg-3 control-label">秒杀开始时间</label>
+                        <div class="col-lg-5">
+                            <label style="color:blue" class="control-label" id="promoStartDate" />
+                        </div>
+                    </div>
+                    <div id="promoCountdownContainer" class="form-group">
+                        <label style="color:blue" class="col-lg-3 control-label">秒杀倒计时</label>
+                        <div class="col-lg-5">
+                            <label style="color:blue" class="control-label" id="promoCountdown"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-3 col-md-offset-3">
+                            <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" id="buyNowBtn">立即购买</button>
+                        </div>
+                    </div>
+                    <!--</form>-->
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+</body>
+
+<script>
+    var g_commVO = {};
+    $(document).ready(function() {
+        var id=getParam("id");
+        // 获取商品详情
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/comm/"+id,
+            /*data: {
+                "id": id
+            },*/
+            xhrFields:{
+                withCredentials:true
+            },
+            success: function(data) {
+                if (data.status == "success") {
+                    g_commVO = data.data;
+                    reloadDom();
+                    // setInterval(reloadDom, 1000);
+                } else {
+                    alert("获取信息失败，原因为" + data.data.errMsg);
+                }
+            },
+            error: function(data) {
+                alert("获取信息失败，原因为" + data.responseText);
+            }
+        });
+
+        //绑定一次按钮事件,防止重复提交
+        $("#buyNowBtn").one("click", function() {
+            $(this).attr("disabled", true);
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/order/create",
+                data: {
+                    "commId": g_commVO.id,
+                    "promoId": g_commVO.promoId,
+                    "quantityPurchased": 1
+                },
+                xhrFields:{
+                    withCredentials:true
+                },
+                success: function(data) {
+                    if (data.status == "success") {
+                        alert("下单成功");
+                        window.location.reload();
+                    } else {
+                        alert("下单失败，原因为" + data.data.errMsg);
+                        if (data.data.errCode == 20003) {
+                            window.location.href="login.html";
+                        }
+                    }
+                },
+                error: function(data) {
+                    alert("下单失败，原因为" + data.responseText);
+                }
+            });
+        });
+
+    });
+
+    function reloadDom() {
+        $("#commName").text(g_commVO.commName);
+        $("#commImgUrl").attr("src", g_commVO.commImgUrl);
+        $("#commDescription").text(g_commVO.commDescription);
+        $("#commPrice").text(g_commVO.commPrice);
+        $("#commStock").text(g_commVO.commStock);
+        $("#commSales").text(g_commVO.commSales);
+
+        var startTime = g_commVO.startDate;
+        // startTime = (new Date(startTime)).getTime();
+        var endTime = g_commVO.promoEndTime;
+        // endTime = (new Date(endTime)).getTime()+1000;
+        var nowTime=g_commVO.nowTime;
+
+        //秒杀未开始
+        if (g_commVO.promoStatus == 1 && startTime>nowTime) {
+
+            $("#promoStartDate").text(g_commVO.startDate);
+
+            startTime = (new Date(startTime)).getTime();
+            $("#promoCountdown").countdown(startTime+1000,function (event) {
+                var format=event.strftime('%D天 %H时 %M分 %S秒开启售卖');
+                $("#promoCountdown").text(format);
+            }).on('finish.countdown',function () {
+                g_commVO.promoStatus = 2;
+                reloadDom();
+            });
+
+            $("#promoPrice").text(g_commVO.promoPrice);
+
+            $("#buyNowBtn").attr("disabled", true);
+        } else if (g_commVO.promoStatus == 2 && startTime<=nowTime && endTime>nowTime) {
+            // 秒杀活动进行中
+            $("#promoStartDate").text("秒杀活动进行中");
+            $("#promoPrice").text(g_commVO.promoPrice);
+
+            $("#buyNowBtn").attr("disabled", false);
+
+            endTime = (new Date(endTime)).getTime()+1000;
+            $("#promoCountdown").countdown(endTime,function (event) {
+                var format=event.strftime('%D天 %H时 %M分 %S秒结束');
+                $("#promoCountdown").text(format);
+            }).on('finish.countdown',function () {
+                g_commVO.promoStatus = 3;
+                g_commVO.promoPrice=null;
+                reloadDom();
+            });
+
+            $("#normalPriceContainer").hide();
+        }else
+        {
+            $("#normalPriceContainer").show();
+            $("#promoPriceContainer").hide();
+            $("#promoStartDateContainer").hide();
+            $("#promoCountdownContainer").hide();
+        }
+    }
+
+    function getParam(paramName) {
+        paramValue = "";
+        isFound = !1;
+        if (this.location.search.indexOf("?") == 0 && this.location.search.indexOf("=") > 1) {
+            arrSource = unescape(this.location.search).substring(1, this.location.search.length).split("&");
+            i = 0;
+            while (i < arrSource.length && !isFound)
+                arrSource[i].indexOf("=") > 0 && arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase() && (paramValue = arrSource[i].split("=")[1], isFound = !0), i++
+        }
+        return paramValue == "" && (paramValue = null), paramValue
+    }
+</script>
+</html>

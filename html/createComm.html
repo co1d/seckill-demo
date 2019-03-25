@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+
+    <link href="static/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="static/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/formValidation/dist/css/formValidation.css">
+    <!-- Theme styles START -->
+    <link href="static/assets/global/css/components.css" rel="stylesheet">
+    <link href="static/assets/frontend/layout/css/style.css" rel="stylesheet">
+    <link href="static/assets/frontend/pages/css/style-shop.css" rel="stylesheet" type="text/css">
+    <link href="static/assets/frontend/pages/css/style-layer-slider.css" rel="stylesheet">
+    <link href="static/assets/frontend/layout/css/style-responsive.css" rel="stylesheet">
+    <link href="static/assets/frontend/layout/css/themes/red.css" rel="stylesheet" id="style-color">
+    <link href="static/assets/frontend/layout/css/custom.css" rel="stylesheet">
+    <!-- Theme styles END -->
+    <title></title>
+</head>
+
+<body class="ecommerce">
+<div class="pre-header">
+    <div class="container">
+        <div class="row">
+            <!-- BEGIN TOP BAR LEFT PART -->
+            <div class="col-md-6 col-sm-6 additional-shop-info">
+                <ul class="list-unstyled list-inline">
+                    <li><i class="fa fa-home"></i><a href="index.html">返回首页</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-sm-6 additional-nav">
+                <ul class="list-unstyled list-inline pull-right">
+                    <li><a href="login.html">请登录</a></li>
+                    <li><a href="register.html" style="color: #f30213">免费注册</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END TOP BAR -->
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="page-header">
+                    <h2>创建商品</h2>
+                </div>
+                <form class="form-horizontal" id="createCommForm" method="post">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">商品名</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="commName" id="commName"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">商品价格</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="commPrice" id="commPrice"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">商品库存</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="commStock" id="commStock"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">商品描述</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="commDescription" id="commDescription"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">商品图片</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="commImgUrl" id="commImgUrl"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">秒杀开始时间</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="promoStartTime" id="promoStartTime"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">秒杀结束时间</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="promoEndTime" id="promoEndTime"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">秒杀价格</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="promoPrice" id="promoPrice"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-3 col-md-offset-3">
+                            <button type="submit" class="btn btn-primary" id="createCommBtn">提交</button>
+                        </div>
+                    </div>
+                    <!--</form>-->
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.22.1/moment-with-locales.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script src="static/formValidation/dist/js/formValidation.js"></script>
+<script src="static/formValidation/dist/js/framework/bootstrap.js"></script>
+<script src="static/formValidation/dist/js/language/zh_CN.js"></script>
+
+</body>
+<script>
+    $(document).ready(function() {
+        $("#createCommForm").formValidation({
+            message: 'This value is not valid',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                commName: {
+                    message: '商品名不合法',
+                    validators: {
+                        notEmpty: {
+                            message: '商品名不能为空'
+                        }
+                    }
+                },
+                commPrice: {
+                    message: '商品价格不合法',
+                    validators: {
+                        notEmpty: {
+                            message: '商品价格不能为空'
+                        },
+                        regexp: {
+                            regexp: /^(([1-9]{1}\d*)|(0{1}))(\.?\d{0,2})$/,
+                            message: '请输入正确的商品价格'
+                        }
+                    }
+                },
+                commStock: {
+                    message: '商品库存不合法',
+                    validators: {
+                        notEmpty: {
+                            message: '商品库存不能为空'
+                        },
+                        regexp: {
+                            regexp: /^-?[1-9]\d*$/,
+                                message: '请输入正确的商品库存数量'
+                        }
+                    }
+                },
+                commDescription: {
+                    message: '商品描述不合法',
+                    validators: {
+                        notEmpty: {
+                            message: '商品描述不能为空'
+                        }
+                    }
+                },
+                commImgUrl: {
+                    message: '商品图片不合法',
+                    validators: {
+                        notEmpty: {
+                            message: '商品图片不能为空'
+                        }
+                    }
+                },
+                promoStartTime:{
+                    validators:{
+                        notEmpty:{
+                            message:'请选择时间'
+                        }
+                    }
+                },
+                promoEndTime:{
+                    validators:{
+                        notEmpty:{
+                            message:'请选择时间'
+                        }
+                    }
+                },
+                promoPrice: {
+                    message: '秒杀价格不合法',
+                    validators: {
+                        notEmpty: {
+                            message: '秒杀价格不能为空'
+                        },
+                        regexp: {
+                            regexp: /^(([1-9]{1}\d*)|(0{1}))(\.?\d{0,2})$/,
+                            message: '请输入正确的秒杀价格'
+                        }
+                    }
+                }
+            }
+        }).on('success.form.fv',function (e) {
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the FormValidation instance
+            var bv = $form.data('formValidation');
+
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/comm/create",
+                data: $form.serialize(),
+                xhrFields:{
+                    withCredentials:true
+                },
+                success: function(data) {
+                    if (data.status == "success") {
+                        alert("创建成功");
+                        document.location = 'index.html';
+                    } else {
+                        alert("创建失败，原因为" + data.data.errMsg);
+                    }
+                },
+                error: function(data) {
+                    alert("创建失败，原因为" + data.responseText);
+                }
+            });
+            return false;
+        });
+
+        $("#promoStartTime").datetimepicker({
+            format:"YYYY-MM-DD HH:mm",
+            locale: moment.locale('zh-CN')
+        });
+
+        $("#promoEndTime").datetimepicker({
+            format:"YYYY-MM-DD HH:mm",
+            locale: moment.locale('zh-CN')
+        });
+    });
+</script>
+</html>
